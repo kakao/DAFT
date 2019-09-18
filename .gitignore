@@ -1,0 +1,6 @@
+__pycache__
+.dfc
+.vscode
+result
+.python-version
+_*.py
