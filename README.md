@@ -9,13 +9,12 @@ Code for the NeurIPS 2019 paper: "Learning Dynamics of Attention: Human Prior fo
 ## Dataset Preparation
 For both CLEVR and GQA, we generally followed [Hudson et al](https://github.com/stanfordnlp/mac-network).
 However, *pytorch* does not have thread-safe dataloader for hdf5 file.
-So we split the hdf5 into single files for enhanced training speed and thread-safe data loading.
-We provide these these single files.
+So we split the hdf5 into single files for faster training and thread-safe data loading.
 - CLEVR will space about 95GB after extraction (features 75GB, images 18GB, annots+misc <2GB).
 - GQA will space about 140GB after extraction (features 115GB, images 21GB, annots+misc <4GB).
 
 ### CLEVR
-1. Download CLEVR dataset, skip this step if you don't need visualization.
+1. Download CLEVR dataset (skip this step if you don't need visualization)
 ```
 $ export DATASET_ROOT={Whatever you want}
 $ cd $DATASET_ROOT
@@ -24,7 +23,7 @@ $ unzip CLEVR_v1.0.zip
 $ mv CLEVR_v1.0 clevr
 ```
 2. Download preprocessed features and annotations  
-(follow [[Hudson et al](https://github.com/stanfordnlp/mac-network)] if you want preprocess images and annotation for yourself)
+(follow [[Hudson et al](https://github.com/stanfordnlp/mac-network)] if you want preprocess images and annotations for yourself)
 ```
 $ cd $DATASET_ROOT/clevr
 $ wget -O features.tar.gz https://www.dropbox.com/s/sis6lmrrx0ze3z1/features.tar.gz?dl=0
@@ -34,7 +33,7 @@ $ tar -xvzf annots.tar.gz
 ```
 
 ### GQA
-1. Download GQA images, skip this step if you don't need visualization.
+1. Download GQA images (skip this step if you don't need visualization)
 ```
 $ export DATASET_ROOT={Whatever you want}
 $ cd $DATASET_ROOT
@@ -44,7 +43,7 @@ $ wget https://nlp.stanford.edu/data/gqa/images.zip
 $ unzip images.zip
 ```
 2. Download preprocessed features and annotations  
-(follow instructions of [[Hudson et al](https://github.com/stanfordnlp/mac-network/tree/gqa)] if you want preprocess images and annotation for yourself)
+(follow instructions of [[Hudson et al](https://github.com/stanfordnlp/mac-network/tree/gqa)] if you want preprocess images and annotations for yourself)
 ```
 $ cd $DATASET_ROOT/gqa
 $ wget -O features.tar.gz https://www.dropbox.com/s/ag0te9o56pz30jk/features.tar.gz?dl=0
@@ -54,7 +53,7 @@ $ tar -xvzf annots.tar.gz
 ```
 
 ## Code
-For reproducibility of our work, we employed experimentation framework [Sacred](https://github.com/IDSIA/sacred) and follow their [command-line interface](https://sacred.readthedocs.io/en/latest/command_line.html). 
+For reproducibility of our work, we employed experimentation framework [Sacred](https://github.com/IDSIA/sacred) and followed their [command-line interface](https://sacred.readthedocs.io/en/latest/command_line.html). 
 
 ### Requirements
 - Python 3.6+ (for [f-string](https://www.python.org/dev/peps/pep-0498/))
@@ -78,8 +77,8 @@ Put the model weight into `result/model/{daftmac|mac}_{clevr|gqa}_step{max_step}
 
 - Visualization
   - `$ python visualize.py with [dataset_name] root=[dataset_root] use_daft=[True|False] max_step=[step] load_seed=[seed]`
-  - ex) `$ python visualize.py with clevr root="/dandelin/daft" use_daft=False max_step=2 load_seed=608494298`
-  - ex) `$ python visualize.py with gqa root="/dandelin/daft" use_daft=True max_step=12 load_seed=305083948`
+  - ex) `$ python visualize.py with clevr root=$DATASET_ROOT use_daft=False max_step=2 load_seed=608494298`
+  - ex) `$ python visualize.py with gqa root=$DATASET_ROOT use_daft=True max_step=12 load_seed=305083948`
 
 ## Citation
 If you use any part of this code for your research, please cite our [paper](https://arxiv.org/abs/1905.11666).
