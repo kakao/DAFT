@@ -3,7 +3,7 @@ Code for the NeurIPS 2019 paper: "Learning Dynamics of Attention: Human Prior fo
 
 ---
 <p align="center">
-  <img align="middle" src="./assets/fig1.png" alt="Comparison between MAC and DAFT MAC" height="480" />
+  <img align="middle" src="./assets/fig1.png" alt="Comparison between MAC and DAFT MAC"/>
 </p>
 
 ## Dataset Preparation
