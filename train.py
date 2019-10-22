@@ -61,7 +61,7 @@ def train(
         elif dataset.name == "clevr":
             loss = criterion(output, answer)
         else:
-            raise KeyError(f"Dataset {dataset_name} does not exist")
+            raise KeyError(f"Dataset {dataset.name} does not exist")
 
         nfe_forward = net.nfe
         net.nfe = 0
@@ -120,8 +120,7 @@ def valid(dataset, net_running, epoch, writer, val_batch_size, workers, print_fr
     net_running.eval()
     net_running = net_running.to(device)
     net_running.computation_direction = "forward"
-    family_correct = Counter()
-    family_total = Counter()
+    family_correct, family_total = Counter(), Counter()
 
     with torch.no_grad():
         for i, (image, question, q_len, answer, family) in enumerate(val_loader):
