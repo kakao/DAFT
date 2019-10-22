@@ -27,7 +27,7 @@ def get_tlts(attentions, modal, dataset_name, q_len, image):
         mask = length_to_mask(img_len, max_len=img_max).to(start_att)
 
     mask = (1.0 - mask).float().unsqueeze(0)
-    start_att = start_att + (mask * -1e30)
+    start_att += (mask * -1e30)
 
     attentions = torch.nn.Softmax(dim=2)(attentions)
     attentions = attentions.clamp(min=1e-10, max=1 - 1e-10)
